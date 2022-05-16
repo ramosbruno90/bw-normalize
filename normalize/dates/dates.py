@@ -11,7 +11,6 @@ class NormalizeDates():
         return result
 
     def format_date(self, data):
-        print(data)
 
         # 20-03-1990
         try:
@@ -54,7 +53,10 @@ class NormalizeDates():
 
         if 'st' in day:
             __day = day.split('st')
-            new_day = f'0{__day[0]}'
+            if __day[0] == '31':
+                new_day = f'{__day[0]}'
+            else:
+                new_day = f'0{__day[0]}'
         elif 'nd' in day:
             __day = day.split('nd')
             new_day = f'0{__day[0]}'
