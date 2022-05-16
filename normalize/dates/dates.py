@@ -55,13 +55,13 @@ class NormalizeDates():
 
         if 'st' in day:
             __day = day.split('st')
-            new_day = __day[0]
+            new_day = f'0{__day[0]}'
         elif 'nd' in day:
             __day = day.split('nd')
-            new_day = __day[0]
+            new_day = f'0{__day[0]}'
         elif 'rd' in day:
             __day = day.split('rd')
-            new_day = __day[0]
+            new_day = f'0{__day[0]}'
         else:
             __day = day.split('th')
             new_day = __day[0]
