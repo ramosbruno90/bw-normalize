@@ -33,7 +33,7 @@ class NormalizeDates():
         try:
             if "de" in data:
                 date_split = data.split(" de ")
-                month = self.__get_month_number(date_split[1])
+                month = self.__get_month_number(date_split[1].lower())
                 data = f"{date_split[2]}-{month}-{date_split[0]}"
         except:
             pass
@@ -43,8 +43,7 @@ class NormalizeDates():
             if "," in data:
                 date_split = data.split(" ")
                 day = self.__get_month_day(date_split[1])
-                month_lower = date_split[0].lower()
-                month = self.__get_month_number(month_lower)
+                month = self.__get_month_number(date_split[0].lower())
                 data = f"{date_split[2]}-{month}-{day}"
         except:
             pass
