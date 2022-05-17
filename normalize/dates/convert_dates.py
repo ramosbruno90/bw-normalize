@@ -4,13 +4,16 @@ import datetime
 
 class ConvertDates():
 
-    def init(self, format="/br"):
+    def __init__(self, format):
+        if not format:
+            raise ValueError('Format not defined')
         self.__format = format
 
     def convert(self, data):
+        print(data)
         if not isinstance(data, str):
             raise ValueError("Invalid date type, send strings only")
-
+        data = data.split('-')
         if self.__format == "/br":
             result = self.format_date_br(data[0], data[1], data[2])
         elif self.__format == "full_br":
@@ -23,27 +26,47 @@ class ConvertDates():
         return result
 
     def format_date_br(self, year, month, day):
+        if int(day) < 1 or int(day) > 31:
+            raise ValueError("Insert a valid day")
         return f"{day}/{month}/{year}"
 
     def format_date_full_br(self, year, month, day):
+        if int(day) < 1 or int(day) > 31:
+            raise ValueError("Insert a valid day")
         return f"{day} de {self.__get_month_name(month, 'br')} de {year}"
 
     def format_date_full_us(self, year, month, day):
         __day = self.__get_us_day(day)
         __month = self.__get_month_name(month, 'us')
-        upper_month = ""
+        upper_month = str(__month).title()
 
         return f"{upper_month} {__day}, {year}"
 
     def __get_us_day(self, day):
-        if int(day) < 1 and int(day) > 31:
+
+        if int(day) < 1 or int(day) > 31:
             raise ValueError("Insert a valid day")
-        elif day == "01" or "31":
+
+        if day == '31':
             __day = f"{day}st"
-        elif day == "02":
-            __day = f"{day}nd"
-        elif day == "03":
-            __day = f"{day}rd"
+        elif day == '01':
+            __day = f'{day.replace("0", "", 1)}st'
+        elif day == '02':
+            __day = f'{day.replace("0", "", 1)}nd'
+        elif day == '03':
+            __day = f'{day.replace("0", "", 1)}rd'
+        elif day == '04':
+            __day = f'{day.replace("0", "", 1)}th'
+        elif day == '05':
+            __day = f'{day.replace("0", "", 1)}th'
+        elif day == '06':
+            __day = f'{day.replace("0", "", 1)}th'
+        elif day == '07':
+            __day = f'{day.replace("0", "", 1)}th'
+        elif day == '08':
+            __day = f'{day.replace("0", "", 1)}th'
+        elif day == '09':
+            __day = f'{day.replace("0", "", 1)}th'
         else:
             __day = f"{day}th"
 
