@@ -15,11 +15,11 @@ class NormalizeCurrency():
         new_value = self.__normalize_currency(value)
         return new_value
 
-    def convert_currency(self, value, sufix=None):
+    def convert_currency(self, value):
         if self.__locale == "pt_BR":
-            return self.__convert_brazilian_currency(value, sufix)
+            return self.__convert_brazilian_currency(value, self.__locale)
         elif self.__locale == "en_US":
-            return self.__convert_us_currency(value, sufix)
+            return self.__convert_us_currency(value, self.__locale)
         else:
             raise ValueError("Locale not found or not supported")
 
